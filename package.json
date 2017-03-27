@@ -1,0 +1,24 @@
+{
+  "name": "twitter-bot",
+  "version": "1.0.0",
+  "description": "twitter bot",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/antlaw0/Twitter-bot.git"
+  },
+  "author": "Anthony",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/antlaw0/Twitter-bot/issues"
+  },
+  "homepage": "https://github.com/antlaw0/Twitter-bot#readme",
+  "dependencies": {
+    "node-twitterbot": "^0.2.2",
+    "touch": "^1.0.0",
+    "twit": "^2.2.5"
+  }
+}
