@@ -26,7 +26,7 @@ var phrase = chooseRandom(phraseArray) + ", " + chooseRandom(phraseArray);
 
 
 
-setInterval( twitterTask, 1000*60*60*24);
+setInterval( twitterTask, 1000*60*60*2);//every 2 hours
 
 
 function twitterTask(){
