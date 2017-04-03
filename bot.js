@@ -1,4 +1,6 @@
 var Twit = require('twit');
+var request = require('request');
+
 var TwitterBot = require('node-twitterbot').TwitterBot;
 var Bot = new TwitterBot({
  consumer_key: process.env.BOT_CONSUMER_KEY,
@@ -6,7 +8,22 @@ var Bot = new TwitterBot({
  access_token: process.env.BOT_ACCESS_TOKEN,
  access_token_secret: process.env.BOT_ACCESS_TOKEN_SECRET
 });
+var url = "http://api.yomomma.info/";
+var queryString ="";
+var theJoke="";
 
+request( {uri : url, qs: queryString} , function(error, api_response, body){
+ // if got response with no errors
+ if (!error && api_response.statusCode == 200){
+theJoke=JSON.parse(body);
+theJoke=theJoke.joke;
+ //console.log("Joke site says \n"+theJoke);
+ //console.log("Site SAYS \n" + JSON.stringify(body));//this prints the correct exchange rate in console
+ }//end of if got response back
+
+});
+  
+ 
 var phraseArray = [ "hey twitter",
                     "im tweeting",
                     "tweet tweet",
@@ -32,7 +49,7 @@ setInterval( twitterTask, 1000*60*60*2);//every 2 hours
 function twitterTask(){
 
     // create tweet, send to Twitter
-	Bot.tweet(phrase);
+	Bot.tweet(theJoke);
 console.log("Tweet sent out");
 
 }
