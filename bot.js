@@ -33,9 +33,11 @@ function twitterTask(){
 
     // create tweet, send to Twitter
 	Bot.tweet(phrase);
-
+console.log("Tweet sent out");
 
 }
 
+//Bot.tweet("Success!");
+console.log("Bot tweeted: Success!");
 
 //module.exports = Bot;
