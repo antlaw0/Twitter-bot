@@ -12,18 +12,7 @@ var url = "http://api.yomomma.info/";
 var queryString ="";
 var theJoke="";
 
-request( {uri : url, qs: queryString} , function(error, api_response, body){
- // if got response with no errors
- if (!error && api_response.statusCode == 200){
-theJoke=JSON.parse(body);
-theJoke=theJoke.joke;
- //console.log("Joke site says \n"+theJoke);
- //console.log("Site SAYS \n" + JSON.stringify(body));//this prints the correct exchange rate in console
- }//end of if got response back
 
-});
-  
- 
 var phraseArray = [ "hey twitter",
                     "im tweeting",
                     "tweet tweet",
@@ -43,18 +32,29 @@ var phrase = chooseRandom(phraseArray) + ", " + chooseRandom(phraseArray);
 
 
 
-setInterval( twitterTask, 1000*60*60*2);//every 2 hours
+setInterval( twitterTask, 1000*60*60*1);//every 2 hours
 
 
 function twitterTask(){
 
     // create tweet, send to Twitter
-	Bot.tweet(theJoke);
-console.log("Tweet sent out");
+	request( {uri : url, qs: queryString} , function(error, api_response, body){
+ // if got response with no errors
+ if (!error && api_response.statusCode == 200){
+theJoke=JSON.parse(body);
+theJoke=theJoke.joke;
+ Bot.tweet(theJoke);
+ console.log("Bot tweeted \n"+theJoke);
+ //console.log("Site SAYS \n" + JSON.stringify(body));//this prints the correct exchange rate in console
+ }//end of if got response back
+else{
+	//tweet from random phrase array
+	Bot.tweet(phrase);
+}//end of if error connecting to joke ApI
+});
+  
 
 }
 
-//Bot.tweet("Success!");
-console.log("Bot tweeted: Success!");
 
 //module.exports = Bot;
