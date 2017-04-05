@@ -34,7 +34,7 @@ var phrase = chooseRandom(phraseArray) + ", " + chooseRandom(phraseArray);
 
 
 
-setInterval( twitterTask, 1000*30);
+setInterval( twitterTask, 1000*60*60*6);
 
 
 function twitterTask(){
