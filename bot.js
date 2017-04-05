@@ -8,6 +8,7 @@ var Bot = new TwitterBot({
  access_token: process.env.BOT_ACCESS_TOKEN,
  access_token_secret: process.env.BOT_ACCESS_TOKEN_SECRET
 });
+/*
 var url = "http://api.yomomma.info/";
 var queryString ="";
 var theJoke="";
@@ -31,12 +32,13 @@ function chooseRandom(myArray) {
 var phrase = chooseRandom(phraseArray) + ", " + chooseRandom(phraseArray);
 
 
+*/
 
-setInterval( twitterTask, 1000*60*60*1);//every 2 hours
+setInterval( twitterTask, 1000*30);
 
 
 function twitterTask(){
-
+/*
     // create tweet, send to Twitter
 	request( {uri : url, qs: queryString} , function(error, api_response, body){
  // if got response with no errors
@@ -53,7 +55,8 @@ else{
 }//end of if error connecting to joke ApI
 });
   
-
+*/
+Bot.tweet("I'm alive again!");
 }
 
 
