@@ -64,7 +64,7 @@ else{
 
 //---------------------------------------------------------------------
 //retweeting bot
-var TWITTER_SEARCH_PHRASE = '#yomama OR #YoMama';
+var TWITTER_SEARCH_PHRASE = '#Minnesota OR #Joke';
 
 
 var Bot2 = new Twit({
