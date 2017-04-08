@@ -59,7 +59,7 @@ function BotRetweet() {
 		}
 	}
 	//every 24 hours
-	setInterval(BotRetweet, 24*60*60*1000);
+	setInterval(BotRetweet, 1*60*1000);
 }
 
 /* Initiate the Bot */
