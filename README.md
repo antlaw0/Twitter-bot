@@ -2,6 +2,7 @@
 Twitter bot project for web programming class
 
 Instructions: https://medium.com/@mattpopovich/how-to-build-and-deploy-a-simple-twitter-bot-super-fast-with-node-js-and-heroku-7b322dbb5dd3#.bt61iv2x5
+Bot's Twitter: https://twitter.com/FrankSt39345073
 
 4-7-17
 Now retweets with #yomama #YoMama every 24 hours
