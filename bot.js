@@ -2,18 +2,22 @@ var Twit = require('twit');
 var request = require('request');
 
 var TwitterBot = require('node-twitterbot').TwitterBot;
+
+//instantiate bot object
 var Bot = new TwitterBot({
+ //following 4 values stored in Heroku  as well as locally
  consumer_key: process.env.BOT_CONSUMER_KEY,
  consumer_secret: process.env.BOT_CONSUMER_SECRET,
  access_token: process.env.BOT_ACCESS_TOKEN,
  access_token_secret: process.env.BOT_ACCESS_TOKEN_SECRET
 });
-
+//set url for yomamma joke API
 var url = "http://api.yomomma.info/";
 var queryString ="";
 var theJoke="";
 
 
+//set phrase array to tweet from if unable to connect to yomama api
 var phraseArray = [ "hey twitter",
                     "im tweeting",
                     "tweet tweet",
@@ -25,6 +29,7 @@ var phraseArray = [ "hey twitter",
                     "#dogpants go on 4 legs!!",
                     "#thedress is blue and black" ];
 
+					//choose random phrase from array
 function chooseRandom(myArray) {
   return myArray[Math.floor(Math.random() * myArray.length)];
 }
@@ -33,8 +38,8 @@ var phrase = chooseRandom(phraseArray) + ", " + chooseRandom(phraseArray);
 
 
 
-
-setInterval( twitterTask, 1000*60*60*6);
+//set to go off every 24 hours
+setInterval( twitterTask, 1000*60*60*24);
 
 
 function twitterTask(){
@@ -43,11 +48,10 @@ function twitterTask(){
 	request( {uri : url, qs: queryString} , function(error, api_response, body){
  // if got response with no errors
  if (!error && api_response.statusCode == 200){
-theJoke=JSON.parse(body);
-theJoke=theJoke.joke;
- Bot.tweet(theJoke);
+theJoke=JSON.parse(body);//make joke into json
+theJoke=theJoke.joke;// get the actual joke string
+ Bot.tweet(theJoke);//tweet the joke
  console.log("Bot tweeted \n"+theJoke);
- //console.log("Site SAYS \n" + JSON.stringify(body));//this prints the correct exchange rate in console
  }//end of if got response back
 else{
 	//tweet from random phrase array
@@ -59,15 +63,16 @@ else{
 }
 
 
-//module.exports = Bot;
 
+//make second bot using twit for retweeting
+//----------------------------------------------------------------------
 
-//---------------------------------------------------------------------
 //retweeting bot
-var TWITTER_SEARCH_PHRASE = '#Minnesota OR #Joke';
+var TWITTER_SEARCH_PHRASE = '#Minnesota OR #Joke';//search for posts with these hashtags
 
-
+//instantiate second bot
 var Bot2 = new Twit({
+	//use following 4 values stored remotely on heroku and locally
 	consumer_key: process.env.BOT_CONSUMER_KEY,
  consumer_secret: process.env.BOT_CONSUMER_SECRET,
  access_token: process.env.BOT_ACCESS_TOKEN,
@@ -85,7 +90,7 @@ function BotInit() {
 			console.log('Bot2 could not be initiated, : ' + error);
 		}
 		else {
-  			console.log('Bot2 initiated : 669520341815836672');
+  			console.log('Bot2 initiated');
 		}
 	}
 	
