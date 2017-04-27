@@ -1,3 +1,4 @@
+/*
 var Twit = require('twit');
 var request = require('request');
 
@@ -134,3 +135,4 @@ function BotRetweet() {
 
 /* Initiate the Bot */
 BotInit();
+*/
